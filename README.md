@@ -5,6 +5,6 @@
 ![image](eventportfolio_1.png)
 ![image](eventportfolio_2.png)
 ![image](EventPortfolio_3.png)
-![image](meet _florists.png)
+![image](meetflorists.png)
 ![image](book_appt.png)
 ![image](book_appt2.png)
