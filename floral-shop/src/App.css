@@ -1,3 +1,19 @@
 .App {
   text-align: center;
 }
+
+
+/*************App.js***********/
+.flower-card {
+  width: 100px;
+  height: auto;
+}
+  .flower-img {
+    width: 100%;
+    height: 200px;
+    border: solid 1px salmon;
+  }
+  .flower-text {
+    font-size: 16px;
+  }
+
