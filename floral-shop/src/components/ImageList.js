@@ -9,7 +9,7 @@ import img6 from '../assets/dinner_event.jpg';
 import img7 from '../assets/funeral2_event.jpg';
 import img8 from '../assets/funeral_event.jpg';
 import img9 from '../assets/home copy.jpg';
-import img10 from '../assets/home_page.png'; v
+import img10 from '../assets/home_page.png'; 
 import img11 from '../assets/mom_event.jpg';
 import img12 from '../assets/shower_event.jpg';
 import img13 from '../assets/showers.jpg';
