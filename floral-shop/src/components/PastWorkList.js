@@ -4,28 +4,28 @@
     {
       "id": 1000,
       "imageIdx": 0,
-      "EventType": "Party",
+      "EventType": "party",
       "Designer": "Abbey",
     },
     
     {
       "id": 1002,
       "imageIdx": 1,
-      "EventType": "Party",
+      "EventType": "party",
       "Designer": "Abbey",
     },
     
     {
       "id": 1003,
       "imageIdx": 2,
-      "EventType": "Party",
+      "EventType": "party",
       "Designer": "Abbey",
     },
     
     {
       "id": 1004,
       "imageIdx": 3,
-      "EventType": "Party",
+      "EventType": "party",
       "Designer": "Abbey",
     },
     
