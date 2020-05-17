@@ -43,9 +43,8 @@ export default class Appointment extends Component {
 
         <div>
             <form>
-                <p className="reservation-title">Brighten someone's day with a bouquet </p><br />
                 <p className="reservation-title">Make an appointment with our designer</p>
-
+                <p className="reservation-title">Brighten someone's day with a bouquet </p><br />
 
             </form>
         </div>

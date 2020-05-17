@@ -4,7 +4,7 @@ import {Route, Link, Switch, BrowserRouter as Router } from 'react-router-dom';
 import Home from './Home';
 import Event from './Event';
 import AboutUs from './AboutUs';
-import Appointment from './Appointment';
+import Appointment from './Appointment/Appointment';
 
 function NavBar () {
     return (
