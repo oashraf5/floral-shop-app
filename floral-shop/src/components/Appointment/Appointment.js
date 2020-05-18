@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './Appointment.css';
 
+import { Redirect } from 'react-router-dom';
+
 import axios from 'axios';
 import config from '../../config/config';
 
@@ -18,7 +20,7 @@ export default class Appointment extends Component {
                     bookingList: [],
                 
                     response: {},
-                    redirectToLandingPage: false };
+                    redirectToHome: false };
 
         this.handleNameChange=this.handleNameChange.bind(this);
         this.handleEmailChange=this.handleEmailChange.bind(this);
@@ -77,13 +79,13 @@ export default class Appointment extends Component {
         } 
 
         //Redirect back to root (App component)
-        this.setState( { redirectToLandingPage: true } ); 
+        this.setState( { redirectToHome: true } ); 
 
     }
     handleCancel(event) {
 
         //Redirect back to root (App component)
-        this.setState( { redirectToLandingPage: true } ); 
+        this.setState( { redirectToHome: true } ); 
     }
 
     
@@ -113,6 +115,11 @@ export default class Appointment extends Component {
         return (
 
         <div>
+
+            {this.state.redirectToHome &&
+                        <Redirect to='/Home' />    //route back to root (App component) depending on state
+                }
+
             <form className="reservation-form">
                 <p className="reservation-title">Brighten someone's day with flowers</p>
                 <p className="reservation-title">Make an appointment with our designer today</p><br />
@@ -125,7 +132,12 @@ export default class Appointment extends Component {
                     </label>
                     <label className="email-input-box">
                         Email<br />
-                        <input className="text-input" type="text" value={this.state.email} placeholder="email" onChange={this.handleEmailChange} onBlur={this.validateEmail} />
+    <input className="text-input" type="text" value={this.state.email} placeholder="email" onChange={this.handleEmailChange} />
+
+        {/* skip email validation during testing
+            <input className="text-input" type="text" value={this.state.email} placeholder="email" onChange={this.handleEmailChange} onBlur={this.validateEmail} />
+            */}
+
                     </label>
                     <label className="phone-input-box">
                         Phone#<br />
