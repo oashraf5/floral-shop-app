@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './Appointment.css';
 
+import axios from 'axios';
+import config from '../../config/config';
+
 export default class Appointment extends Component {
 
     constructor(props) {
@@ -10,7 +13,12 @@ export default class Appointment extends Component {
                     phone: "",
                     dateTime: "",
                     occasion: "",
-                    quantity: 0 };
+                    quantity: 0,
+
+                    bookingList: [],
+                
+                    response: {},
+                    redirectToLandingPage: false };
 
         this.handleNameChange=this.handleNameChange.bind(this);
         this.handleEmailChange=this.handleEmailChange.bind(this);
@@ -19,6 +27,8 @@ export default class Appointment extends Component {
         this.handleOccasionChange=this.handleOccasionChange.bind(this);
         this.handleQuantityChange=this.handleQuantityChange.bind(this);
         this.handleReserve=this.handleCancel.bind(this);
+
+        this.validateEmail=this.valdateEmail.bind(this);
     }
 
     handleNameChange(event) {
@@ -39,20 +49,73 @@ export default class Appointment extends Component {
     handleQuantityChange(event) {
         this.setState({quantity: event.target.value}); //update the value state when the field is changed
     }
+
     handleReserve(event) {
+
+        if (event.target.elements === undefined) {
+            return;
+        }
+
+        let bookingObj={};
+        for (let i=0; i<event.target.elements.length; i++) {
+            let elem=event.target.elements[i];
+            if (elem.type !== "text" && elem.type !== "number" ) {
+                continue;
+            }
+
+            let keyValue={ [elem.name]: elem.value  }
+            //merge key:value pair to bookingObj
+            Object.assign(bookingObj, keyValue);
+
+        }
+
+        event.preventDefault();
+
+        let bookingStr=JSON.stringify(bookingObj);
+        if (window.confirm("Submitting reservation")) {
+// this.props.location.createWineCallBack(wineStr);
+        } 
+
+        //Redirect back to root (App component)
+        this.setState( { redirectToLandingPage: true } ); 
 
     }
     handleCancel(event) {
 
+        //Redirect back to root (App component)
+        this.setState( { redirectToLandingPage: true } ); 
     }
+
+    
+    async valdateEmail(event) {
+
+        let emailValidationKey = config.REACT_APP_EMAIL_VALIDATION_KEY;
+        let emailAddr = event.target.value;
+
+        try {
+        const response=await axios.get('http://apilayer.net/api/check?access_key='+emailValidationKey
+                                +'&smtp=1&format=1&email='+emailAddr);
+        console.log("getHTTP response:", response.data);
+
+        if (response.data.smtp_check !== true) {
+            alert("Invalid email!")
+        }
+
+        this.setState({response: response.data})
+
+        } catch (e) {
+        console.error(e);
+        }
+  }
+
 
     render() {
         return (
 
         <div>
-            <form class="reservation-form">
-                <p className="reservation-title">Brighten someone's day with a bouquet </p>
-                <p className="reservation-title">Make an appointment with our designer</p><br />
+            <form className="reservation-form">
+                <p className="reservation-title">Brighten someone's day with flowers</p>
+                <p className="reservation-title">Make an appointment with our designer today</p><br />
 
                 <div className="input-container">
 
@@ -62,14 +125,18 @@ export default class Appointment extends Component {
                     </label>
                     <label className="email-input-box">
                         Email<br />
-                        <input className="text-input" type="text" value={this.state.email} placeholder="email" onChange={this.handleEmailChange} />
+                        <input className="text-input" type="text" value={this.state.email} placeholder="email" onChange={this.handleEmailChange} onBlur={this.validateEmail} />
                     </label>
                     <label className="phone-input-box">
                         Phone#<br />
                         <input className="text-input" type="text" value={this.state.phone} placeholder="phone number" onChange={this.handlePhoneChange} />
                     </label>
+                    <label className="quantity-input-box">
+                        Quantity<br />
+                        <input className="number-input" type="number" value={this.state.quantity} placeholder="quantity" onChange={this.handleQuantityChange} />
+                    </label>
                     <label className="datetime-input-box">
-                        Rserve time<br />
+                        Reserve time<br />
                         <input className="datetime-input" type="text" value={this.state.dateTime} placeholder="date time" onChange={this.handleDateTimeChange} />
                     </label>
                     <label className="occasion-input-box">
@@ -80,11 +147,7 @@ export default class Appointment extends Component {
                             <option value="birthday">Birthday</option>
                             <option value="wedding">Wedding</option>
                         </select>
-            {/* <input className="text-input" type="number" value={this.state.occasion} placeholder="occasion type" onChange={this.handleOccasionChange} /> */}
-                    </label>
-                    <label className="quantity-input-box">
-                        Phone#<br />
-                        <input className="number-input" type="number" value={this.state.quantity} placeholder="quantity" onChange={this.handleQuantityChange} />
+            {/* <input className="text-input" type="text" value={this.state.occasion} placeholder="occasion type" onChange={this.handleOccasionChange} /> */}
                     </label>
 
                     <div className="button-row">
