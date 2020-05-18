@@ -80,12 +80,16 @@ export default class Appointment extends Component {
 
         //Redirect back to root (App component)
         this.setState( { redirectToHome: true } ); 
+        //swap back to the Home component display before redirect
+        this.props.location.swapDisplayCallback("home-container", this.props);
 
     }
     handleCancel(event) {
 
         //Redirect back to root (App component)
         this.setState( { redirectToHome: true } ); 
+        //swap back to the Home component display before redirect
+        this.props.location.swapDisplayCallback("home-container", this.props);
     }
 
     
@@ -112,63 +116,74 @@ export default class Appointment extends Component {
 
 
     render() {
+
+        if (this.props.location.swapDisplayCallback === undefined) {
+            return <div></div>    //no callback to make query
+        }
+
+        let toContainerId="appointment-container";
+        if (! this.state.redirectToHome) {  //do not overwrite display setup by filter form if redirecting away 
+            
+            this.props.location.swapDisplayCallback(toContainerId, this.props);
+        }
+
         return (
 
-        <div>
+            <div id={toContainerId}>
 
-            {this.state.redirectToHome &&
-                        <Redirect to='/Home' />    //route back to root (App component) depending on state
-                }
+                {this.state.redirectToHome &&
+                            <Redirect to='/Home' />    //route back to root (App component) depending on state
+                    }
 
-            <form className="reservation-form">
-                <p className="reservation-title">Brighten someone's day with flowers</p>
-                <p className="reservation-title">Make an appointment with our designer today</p><br />
+                <form className="reservation-form">
+                    <p className="reservation-title">Brighten someone's day with flowers</p>
+                    <p className="reservation-title">Make an appointment with our designer today</p><br />
 
-                <div className="input-container">
+                    <div className="input-container">
 
-                    <label className="name-input-box">
-                        Name<br />
-                        <input className="text-input" type="text" value={this.state.name} placeholder="name" onChange={this.handleNameChange} />
-                    </label>
-                    <label className="email-input-box">
-                        Email<br />
-    <input className="text-input" type="text" value={this.state.email} placeholder="email" onChange={this.handleEmailChange} />
+                        <label className="name-input-box">
+                            Name<br />
+                            <input className="text-input" type="text" value={this.state.name} placeholder="name" onChange={this.handleNameChange} />
+                        </label>
+                        <label className="email-input-box">
+                            Email<br />
+        <input className="text-input" type="text" value={this.state.email} placeholder="email" onChange={this.handleEmailChange} />
 
-        {/* skip email validation during testing
-            <input className="text-input" type="text" value={this.state.email} placeholder="email" onChange={this.handleEmailChange} onBlur={this.validateEmail} />
-            */}
+            {/* skip email validation during testing
+                <input className="text-input" type="text" value={this.state.email} placeholder="email" onChange={this.handleEmailChange} onBlur={this.validateEmail} />
+                */}
 
-                    </label>
-                    <label className="phone-input-box">
-                        Phone#<br />
-                        <input className="text-input" type="text" value={this.state.phone} placeholder="phone number" onChange={this.handlePhoneChange} />
-                    </label>
-                    <label className="quantity-input-box">
-                        Quantity<br />
-                        <input className="number-input" type="number" value={this.state.quantity} placeholder="quantity" onChange={this.handleQuantityChange} />
-                    </label>
-                    <label className="datetime-input-box">
-                        Reserve time<br />
-                        <input className="datetime-input" type="text" value={this.state.dateTime} placeholder="date time" onChange={this.handleDateTimeChange} />
-                    </label>
-                    <label className="occasion-input-box">
-                        Occasion<br />
-                        <select id="occasion-select">
-                            <option value="party">Party</option>
-                            <option value="shower">Shower</option>
-                            <option value="birthday">Birthday</option>
-                            <option value="wedding">Wedding</option>
-                        </select>
-            {/* <input className="text-input" type="text" value={this.state.occasion} placeholder="occasion type" onChange={this.handleOccasionChange} /> */}
-                    </label>
+                        </label>
+                        <label className="phone-input-box">
+                            Phone#<br />
+                            <input className="text-input" type="text" value={this.state.phone} placeholder="phone number" onChange={this.handlePhoneChange} />
+                        </label>
+                        <label className="quantity-input-box">
+                            Quantity<br />
+                            <input className="number-input" type="number" value={this.state.quantity} placeholder="quantity" onChange={this.handleQuantityChange} />
+                        </label>
+                        <label className="datetime-input-box">
+                            Reserve time<br />
+                            <input className="datetime-input" type="text" value={this.state.dateTime} placeholder="date time" onChange={this.handleDateTimeChange} />
+                        </label>
+                        <label className="occasion-input-box">
+                            Occasion<br />
+                            <select id="occasion-select">
+                                <option value="party">Party</option>
+                                <option value="shower">Shower</option>
+                                <option value="birthday">Birthday</option>
+                                <option value="wedding">Wedding</option>
+                            </select>
+                {/* <input className="text-input" type="text" value={this.state.occasion} placeholder="occasion type" onChange={this.handleOccasionChange} /> */}
+                        </label>
 
-                    <div className="button-row">
-                        <button className="form-button" onClick={this.handleReserve} >Reserve</button>  
-                        <button className="form-button" onClick={this.handleCancel} >Cancel</button>  
+                        <div className="button-row">
+                            <button className="form-button" onClick={this.handleReserve} >Reserve</button>  
+                            <button className="form-button" onClick={this.handleCancel} >Cancel</button>  
+                        </div>
                     </div>
-                </div>
-            </form>
-        </div>
+                </form>
+            </div>
 
         )
     }

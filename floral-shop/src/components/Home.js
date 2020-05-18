@@ -1,12 +1,13 @@
 import React from 'react';
 
+export default function Home(props) {
 
-function Home () {
-    return (
-        <React.Fragment>
-            <h1 style={{color:'red'}}>Welcome to the home page</h1>
-        </React.Fragment>
+    if (props.location.swapDisplayCallback !== undefined) {
+        props.location.swapDisplayCallback("home-container", props);
+    }
+
+    return (  //display already rendered in App.js
+        <div>
+        </div>
     )
 }
-
-export default Home;
