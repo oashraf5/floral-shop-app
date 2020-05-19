@@ -94,7 +94,6 @@ export default class Appointment extends Component {
         //swap back to the Home component display before redirect
         this.props.location.swapDisplayCallback("home-container", this.props);
     }
-
     
     async valdateEmail(event) {
 
