@@ -20,6 +20,13 @@ a:active {
 
 
 /*************App.js***********/
+
+.shop-name {
+  font-size: 28px;
+  color: white;
+  font-weight: bold;
+}
+
 .home-img-box {
   display: flex;
   flex-direction: column;

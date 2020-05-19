@@ -133,18 +133,6 @@ export default class App extends Component {
     )
   }
 
-// displayDummyImg() {
-//   return (
-
-//     <div className="flower-card">
-//       <img className="flower-img" src={ImageList[PastWorkList[0].imageIdx]} />
-//       <p className="flower-text" >{PastWorkList[0].EventType}</p>
-//       <p className="flower-text" >{PastWorkList[0].Designer}</p>
-//   </div>
-//   )
-// }
-
-
   render() {
 
     if (PastWorkList === undefined) {
@@ -156,6 +144,8 @@ export default class App extends Component {
       <div className="App">
         
         {this.navBar()}
+
+        <p className="shop-name">Floral Arrangement Shop</p>
 
         <Router>
           <Redirect to='/Home' />  
