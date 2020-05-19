@@ -1,9 +1,50 @@
+html { 
+  background-color: cadetblue;
+  background-size: cover;
+}
+
 .App {
   text-align: center;
 }
 
+ul {
+  list-style-type:none;
+}
+a:link {
+  text-decoration: none;
+}
+a:active {
+  font-size: 20px;
+  color: white;
+}
+
 
 /*************App.js***********/
+.home-img-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  width: 100%;
+  
+  position: relative;
+  margin-top: 50px;
+}
+
+  .home-img {
+    width: 80%;
+    margin-left: 10%;
+  }
+
+  .home-text {
+    position: absolute;
+
+    width: 60%;
+    margin-left: 20%;
+    color: white;
+    font-size: 20px;
+  }
+
 .flower-card {
   width: 100px;
   height: auto;
@@ -17,3 +58,76 @@
     font-size: 16px;
   }
 
+
+
+  .menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: rgb(100, 168, 177);
+  }
+    .menu-bar {
+      width: 400px;
+  
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+  
+      font-weight: bold;
+      font-style: italic;
+    }
+
+    
+/*********************Event component styling*******************/
+.event-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+  .event-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    width: 100%;
+    margin: 0 0 auto;
+  }
+    .event-img {
+      width: 200px;
+      height: 350px;
+    }
+    .event-desc-box {
+      width: 500px;
+      height: 200px;
+      color: white;
+    }
+  .quote-text1 {
+    width: 350px;
+    margin-left: 350px;
+
+    font-size: 20px;
+    font-style: italic;
+    color: wheat;
+  }
+
+/*****************AboutUs component styling******************/
+
+  .about-us-container {
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+    .designer-img {
+      width: 80%;
+    }
+    .designer-desc {
+      text-align: center;
+
+      margin: 0 10% 10% auto;
+      width: 80%;
+      color: white;
+    }
+  

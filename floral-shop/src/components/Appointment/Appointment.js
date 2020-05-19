@@ -74,7 +74,6 @@ export default class Appointment extends Component {
 
         event.preventDefault();
 
-// let bookingStr=JSON.stringify(bookingObj);
         if (window.confirm("Submitting reservation")) {
             //update booking list
             let bookings = this.state.bookingList;
@@ -157,12 +156,9 @@ export default class Appointment extends Component {
                         </label>
                         <label className="email-input-box">
                             Email<br />
-            <input className="text-input" type="text" value={this.state.email} placeholder="email" onChange={this.handleEmailChange} />
 
-            {/* skip email validation during testing
-                <input className="text-input" type="text" value={this.state.email} placeholder="email" onChange={this.handleEmailChange} onBlur={this.validateEmail} />
-                */}
-
+                            <input className="text-input" type="text" value={this.state.email} placeholder="email" onChange={this.handleEmailChange} onBlur={this.validateEmail} />
+               
                         </label>
                         <label className="phone-input-box">
                             Phone#<br />

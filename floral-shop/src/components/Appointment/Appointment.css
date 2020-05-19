@@ -95,6 +95,7 @@
 .calendar-app {
     font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
     font-size: 14px;
+
   }
   
   .calendar-app-top {
@@ -104,5 +105,6 @@
   .calendar-app-calendar {
     margin: 0 auto;
     max-width: 500px;
+    background-color: lightsteelblue;
   }
   
