@@ -2,7 +2,7 @@
 
 # Wireframe
 ### Home
-![wireframe](./wireframe/home.PNG)
+![wireframe](./wireframe/home.PNG) 
 ### Event
 ![wireframe](./wireframe/event_list.PNG)
 ### About Us
