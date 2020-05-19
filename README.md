@@ -15,6 +15,7 @@
 # Technologies used
 ###   fullcalendar and plugins
 ###   axios
+###   react router
 # Install commands
 ###   npm install --save @fullcalendar/react @fullcalendar/core @fullcalendar/daygrid @fullcalendar/timegrid @fullcalendar/interaction
 ###   npm install --save axios 
