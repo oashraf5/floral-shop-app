@@ -145,13 +145,14 @@ export default class App extends Component {
         
         {this.navBar()}
 
-        <p className="shop-name">Floral Arrangement Shop</p>
-
         <Router>
           <Redirect to='/Home' />  
         </Router>
 
         <div id="home-container">
+          
+          <p className="shop-name">Floral Arrangement Shop</p>
+
           {this.displayHome()}
         </div>
       </div>

@@ -1,10 +1,32 @@
 # floral-shop-app
 
-![image](floral-portfolio.png)
-![image](floral-homepage.png)
-![image](eventportfolio_1.png)
-![image](eventportfolio_2.png)
-![image](EventPortfolio_3.png)
-![image](meetflorists.png)
-![image](book_appt.png)
-![image](book_appt2.png)
+# Wireframe
+### Home
+![wireframe](./wireframe/home.PNG)
+### Event
+![wireframe](./wireframe/event_list.PNG)
+### About Us
+![wireframe](./wireframe/about_us.PNG)
+### Appointment
+![wireframe](./wireframe/appointment.PNG)
+### Calendar
+![wireframe](./wireframe/calendar.PNG)
+# 
+# Technologies used
+###   fullcalendar and plugins
+###   axios
+# Install commands
+###   npm install --save @fullcalendar/react @fullcalendar/core @fullcalendar/daygrid @fullcalendar/timegrid @fullcalendar/interaction
+###   npm install --save axios 
+# 
+# API used
+###   Purpose: email validation 
+###   API End point: http://apilayer.net/api/check
+# 
+# User engagement elements
+### Nav Bar 
+### Appointment form
+### Appointment - CRUD using calendar component.
+### Gifs:
+###   Breezes in Tulip field (in App.js)
+# 
