@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom';
 
 import axios from 'axios';
 import config from '../../config/config';
+import CalendarApp from './CalendarApp';
 
 export default class Appointment extends Component {
 
@@ -73,9 +74,12 @@ export default class Appointment extends Component {
 
         event.preventDefault();
 
-        let bookingStr=JSON.stringify(bookingObj);
+// let bookingStr=JSON.stringify(bookingObj);
         if (window.confirm("Submitting reservation")) {
-// this.props.location.createWineCallBack(wineStr);
+            //update booking list
+            let bookings = this.state.bookingList;
+            bookings.push(bookingObj);
+            this.setState( {bookingList: bookings} );
         } 
 
         //Redirect back to root (App component)
@@ -112,8 +116,11 @@ export default class Appointment extends Component {
         } catch (e) {
         console.error(e);
         }
-  }
+    }
 
+    updateDateTime(dateTimeStr, dateTimeInputId) {
+        document.getElementById(dateTimeInputId).value = dateTimeStr;
+    }
 
     render() {
 
@@ -122,6 +129,8 @@ export default class Appointment extends Component {
         }
 
         let toContainerId="appointment-container";
+        let dateTimeInputId="datetime-input"; 
+        let nameInputId="name-input"
         if (! this.state.redirectToHome) {  //do not overwrite display setup by filter form if redirecting away 
             
             this.props.location.swapDisplayCallback(toContainerId, this.props);
@@ -132,22 +141,23 @@ export default class Appointment extends Component {
             <div id={toContainerId}>
 
                 {this.state.redirectToHome &&
-                            <Redirect to='/Home' />    //route back to root (App component) depending on state
-                    }
+                    <Redirect to='/Home' />    //route back to root (App component) depending on state
+                }
+
+                <p className="reservation-title">Brighten someone's day with flowers</p>
+                <p className="reservation-title">Make an appointment with our designer today</p><br />
 
                 <form className="reservation-form">
-                    <p className="reservation-title">Brighten someone's day with flowers</p>
-                    <p className="reservation-title">Make an appointment with our designer today</p><br />
 
                     <div className="input-container">
 
                         <label className="name-input-box">
                             Name<br />
-                            <input className="text-input" type="text" value={this.state.name} placeholder="name" onChange={this.handleNameChange} />
+                            <input id={nameInputId} type="text" value={this.state.name} placeholder="name" onChange={this.handleNameChange} />
                         </label>
                         <label className="email-input-box">
                             Email<br />
-        <input className="text-input" type="text" value={this.state.email} placeholder="email" onChange={this.handleEmailChange} />
+            <input className="text-input" type="text" value={this.state.email} placeholder="email" onChange={this.handleEmailChange} />
 
             {/* skip email validation during testing
                 <input className="text-input" type="text" value={this.state.email} placeholder="email" onChange={this.handleEmailChange} onBlur={this.validateEmail} />
@@ -164,7 +174,7 @@ export default class Appointment extends Component {
                         </label>
                         <label className="datetime-input-box">
                             Reserve time<br />
-                            <input className="datetime-input" type="text" value={this.state.dateTime} placeholder="date time" onChange={this.handleDateTimeChange} />
+                            <input id={dateTimeInputId} type="text" value={this.state.dateTime} placeholder="pick a time from calendar" onChange={this.handleDateTimeChange} />
                         </label>
                         <label className="occasion-input-box">
                             Occasion<br />
@@ -178,11 +188,20 @@ export default class Appointment extends Component {
                         </label>
 
                         <div className="button-row">
-                            <button className="form-button" onClick={this.handleReserve} >Reserve</button>  
+                            <button className="form-button" onClick={this.handleReserve} >Update</button>  
                             <button className="form-button" onClick={this.handleCancel} >Cancel</button>  
                         </div>
                     </div>
-                </form>
+                </form><br />
+
+                <div id="appointment-calendar">
+                    <CalendarApp 
+                        dateTimeId={dateTimeInputId}
+                        nameId={nameInputId}
+                        updateDateTimeCallBack={this.updateDateTime}
+                    />
+                </div>
+
             </div>
 
         )

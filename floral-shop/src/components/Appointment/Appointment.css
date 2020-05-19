@@ -23,12 +23,12 @@
 
     }
 
-        #occasion-select, .text-input, .number-input, .datetime-input {
+        #occasion-select, #datetime-input, #name-input, .text-input, .number-input {
             border: solid 1px #E6DBDA;
             border-radius: 5px;
             font-size: 14px;
             padding: 8px;
-          }
+        }
 
         .name-input-box {
             grid-column: 1/3;
@@ -89,3 +89,20 @@
         border: solid 1px #545871;
         border-radius: 20px
       }
+
+
+/****************CalendarApp***************/
+.calendar-app {
+    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+    font-size: 14px;
+  }
+  
+  .calendar-app-top {
+    margin: 0 0 3em;
+  }
+  
+  .calendar-app-calendar {
+    margin: 0 auto;
+    max-width: 500px;
+  }
+  
